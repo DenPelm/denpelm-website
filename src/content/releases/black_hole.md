@@ -5,7 +5,7 @@ releaseType: "single"
 
 date: 2023-09-28
 
-cover: "/covers/black hole.png"
+cover: "/covers/black hole.jpg"
 
 featured: false
 

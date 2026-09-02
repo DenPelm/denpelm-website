@@ -5,7 +5,7 @@ releaseType: "single"
 
 date: 2023-07-03
 
-cover: "/covers/corpuscle.png"
+cover: "/covers/corpuscle.jpg"
 
 featured: false
 

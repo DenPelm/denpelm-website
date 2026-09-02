@@ -5,7 +5,7 @@ releaseType: "single"
 
 date: 2025-11-28
 
-cover: "/covers/subconscious pulse.png"
+cover: "/covers/subconscious pulse.jpg"
 
 featured: false
 

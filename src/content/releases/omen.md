@@ -5,7 +5,7 @@ releaseType: "single"
 
 date: 2023-10-14
 
-cover: "/covers/omen.png"
+cover: "/covers/omen.jpg"
 
 featured: false
 

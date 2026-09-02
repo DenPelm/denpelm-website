@@ -5,7 +5,7 @@ releaseType: "remix"
 
 date: 2026-04-28
 
-cover: "/covers/proxima c remix.png"
+cover: "/covers/proxima c remix.jpg"
 
 featured: false
 

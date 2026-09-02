@@ -5,7 +5,7 @@ releaseType: "other"
 
 date: 2024-03-06
 
-cover: "/covers/collision.png"
+cover: "/covers/collision.jpg"
 
 featured: false
 

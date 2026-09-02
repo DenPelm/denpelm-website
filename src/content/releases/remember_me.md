@@ -5,7 +5,7 @@ releaseType: "single"
 
 date: 2024-10-04
 
-cover: "/covers/remember me.png"
+cover: "/covers/remember me.jpg"
 
 featured: false
 

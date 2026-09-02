@@ -5,7 +5,7 @@ releaseType: "single"
 
 date: 2026-01-23
 
-cover: "/covers/inner universe.jpeg"
+cover: "/covers/inner universe.jpg"
 
 featured: true
 

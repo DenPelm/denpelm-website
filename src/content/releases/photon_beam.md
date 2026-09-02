@@ -5,7 +5,7 @@ releaseType: "single"
 
 date: 2025-07-06
 
-cover: "/covers/photon beam.png"
+cover: "/covers/photon beam.jpg"
 
 featured: false
 

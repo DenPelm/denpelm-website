@@ -5,7 +5,7 @@ releaseType: "other"
 
 date: 2024-05-30
 
-cover: "/covers/prions.png"
+cover: "/covers/prions.jpg"
 
 featured: false
 

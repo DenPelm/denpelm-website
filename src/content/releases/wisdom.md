@@ -5,7 +5,7 @@ releaseType: "single"
 
 date: 2021-09-05
 
-cover: "/covers/wisdom.png"
+cover: "/covers/wisdom.jpg"
 
 featured: false
 

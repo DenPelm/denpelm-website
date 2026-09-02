@@ -5,7 +5,7 @@ releaseType: "other"
 
 date: 2024-06-21
 
-cover: "/covers/voices.png"
+cover: "/covers/voices.jpg"
 
 featured: false
 

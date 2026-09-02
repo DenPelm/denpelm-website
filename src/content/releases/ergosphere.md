@@ -5,7 +5,7 @@ releaseType: "other"
 
 date: 2026-03-20
 
-cover: "/covers/ergosphere.png"
+cover: "/covers/ergosphere.jpg"
 
 featured: true
 

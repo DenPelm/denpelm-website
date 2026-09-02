@@ -5,7 +5,7 @@ releaseType: "other"
 
 date: 2025-08-30
 
-cover: "/covers/frostfyre vol.6.png"
+cover: "/covers/frostfyre vol.6.jpg"
 
 featured: false
 

@@ -5,7 +5,7 @@ releaseType: "remix"
 
 date: 2026-07-03
 
-cover: "/covers/forgive me remix.png"
+cover: "/covers/forgive me remix.jpg"
 
 featured: false
 

@@ -5,7 +5,7 @@ releaseType: "single"
 
 date: 2024-05-04
 
-cover: "/covers/chirality.png"
+cover: "/covers/chirality.jpg"
 
 featured: false
 

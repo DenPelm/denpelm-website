@@ -5,7 +5,7 @@ releaseType: "single"
 
 date: 2023-11-03
 
-cover: "/covers/aberration.png"
+cover: "/covers/aberration.jpg"
 
 featured: false
 

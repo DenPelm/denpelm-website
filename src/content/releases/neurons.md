@@ -5,7 +5,7 @@ releaseType: "single"
 
 date: 2025-05-02
 
-cover: "/covers/neurons.png"
+cover: "/covers/neurons.jpg"
 
 featured: false
 

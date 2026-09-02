@@ -5,7 +5,7 @@ releaseType: "remix"
 
 date: 2025-09-06
 
-cover: "/covers/evro remixes.png"
+cover: "/covers/evro remixes.jpg"
 
 featured: false
 

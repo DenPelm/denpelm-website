@@ -5,7 +5,7 @@ releaseType: "single"
 
 date: 2020-10-15
 
-cover: "/covers/phobia.png"
+cover: "/covers/phobia.jpg"
 
 featured: false
 

@@ -5,7 +5,7 @@ releaseType: "other"
 
 date: 2025-12-22
 
-cover: "/covers/lost dream.png"
+cover: "/covers/lost dream.jpg"
 
 featured: false
 

@@ -5,7 +5,7 @@ releaseType: "remix"
 
 date: 2025-12-26
 
-cover: "/covers/eternal remix.png"
+cover: "/covers/eternal remix.jpg"
 
 featured: false
 

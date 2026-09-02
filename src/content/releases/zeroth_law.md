@@ -5,7 +5,7 @@ releaseType: "other"
 
 date: 2026-06-26
 
-cover: "/covers/zeroth law.png"
+cover: "/covers/zeroth law.jpg"
 
 featured: false
 
