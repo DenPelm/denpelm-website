@@ -7,23 +7,23 @@ const pages = [
         title: "Home"
     },
     {
-        href: `${basePath}/`,
+        href: `${basePath}/releases`,
         title: "Releases"
     },
     {
-        href: `${basePath}/`,
+        href: `${basePath}/about`,
         title: "About"
     },
     {
-        href: `${basePath}/`,
+        href: `${basePath}/reflections`,
         title: "Reflections"
     },
     {
-        href: `${basePath}/`,
+        href: `${basePath}/samples`,
         title: "Samples & Presets"
     },
     {
-        href: `${basePath}/`,
+        href: `${basePath}/contact`,
         title: "Contact"
     }
 ];
@@ -33,15 +33,17 @@ const currentPath = Astro.url.pathname;
 
 <nav class="main-nav">
     <div class="container">
-        {
-        pages.map(page => (
-            <a
-                href={page.href}
-                class={currentPath === page.href ? "active" : ""}>
-                {page.title}
-            </a>
-        ))
-        }
+        {pages.map(page => {
+            const isActive = currentPath === page.href || 
+                (page.href !== `${basePath}/` && currentPath.startsWith(page.href));
+            return (
+                <a
+                    href={page.href}
+                    class={isActive ? "active" : ""}
+                >
+                    {page.title}
+                </a>
+            );
+        })}
     </div>
 </nav>
-
