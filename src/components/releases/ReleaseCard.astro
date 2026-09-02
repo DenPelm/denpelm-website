@@ -5,6 +5,8 @@ import { formatDate } from "../../utils/dates";
 import { getStreamingServices } from "../../utils/releaseHelpers";
 import type { CollectionEntry } from "astro:content";
 
+const basePath = import.meta.env.BASE_URL;
+
 interface Props {
     release: CollectionEntry<"releases">;
 }
@@ -17,9 +19,9 @@ const services = getStreamingServices(data.streaming);
 
 <Card>
     <article class="release-card">
-        <a href={`/releases/${release.id}`} class="cover-link">
+        <a href={`${basePath}/releases/${release.id}`} class="cover-link">
             <img
-                src={data.cover}
+                src={`${basePath}${data.cover}`}
                 alt={data.title}
                 class="cover"
             />
@@ -55,7 +57,7 @@ const services = getStreamingServices(data.streaming);
                 <span class="toggle-label">Read more</span>
                 <span class="toggle-icon" aria-hidden="true">↓</span>
             </button>
-            <a href={`/releases/${release.id}`} class="details-link">
+            <a href={`${basePath}/releases/${release.id}`} class="details-link">
                 View release →
             </a>
             <StreamingLinks services={services} />
@@ -64,7 +66,7 @@ const services = getStreamingServices(data.streaming);
 </Card>
 
 <script>
-    const COLLAPSED_HEIGHT = 120; // Максимальная высота свёрнутого описания в px
+    const COLLAPSED_HEIGHT = 120;
 
     document.querySelectorAll('.release-card').forEach(card => {
         const wrapper = card.querySelector<HTMLElement>('.description-wrapper');
@@ -72,16 +74,13 @@ const services = getStreamingServices(data.streaming);
 
         if (!wrapper || !button) return;
 
-        // Проверяем, нужно ли показывать кнопку (если описание длиннее COLLAPSED_HEIGHT)
         const needsTruncation = wrapper.scrollHeight > COLLAPSED_HEIGHT + 5;
 
         if (!needsTruncation) {
-            // Если описание короткое — скрываем кнопку и не трогаем описание
             button.style.display = 'none';
             return;
         }
 
-        // Устанавливаем начальное свёрнутое состояние
         wrapper.style.maxHeight = `${COLLAPSED_HEIGHT}px`;
         wrapper.classList.add('collapsed');
 
@@ -92,14 +91,12 @@ const services = getStreamingServices(data.streaming);
             const isExpanded = button.getAttribute('aria-expanded') === 'true';
 
             if (isExpanded) {
-                // Сворачиваем
                 wrapper.style.maxHeight = `${COLLAPSED_HEIGHT}px`;
                 wrapper.classList.add('collapsed');
                 button.setAttribute('aria-expanded', 'false');
                 if (label) label.textContent = 'Read more';
                 if (icon) icon.textContent = '↓';
             } else {
-                // Разворачиваем на реальную высоту содержимого
                 wrapper.style.maxHeight = `${wrapper.scrollHeight}px`;
                 wrapper.classList.remove('collapsed');
                 button.setAttribute('aria-expanded', 'true');
@@ -168,7 +165,6 @@ const services = getStreamingServices(data.streaming);
         font-size: .8rem;
     }
     
-    /* 🎯 Обёртка для плавной анимации */
     .description-wrapper {
         overflow: hidden;
         transition: max-height 0.4s ease;
@@ -178,7 +174,6 @@ const services = getStreamingServices(data.streaming);
         position: relative;
     }
     
-    /* Градиент-затемнение в свёрнутом состоянии */
     .description-wrapper.collapsed::after {
         content: '';
         position: absolute;
@@ -201,7 +196,6 @@ const services = getStreamingServices(data.streaming);
         margin: 0;
     }
     
-    /* 🎯 Кнопка сворачивания/разворачивания */
     .toggle-description {
         display: inline-flex;
         align-items: center;
