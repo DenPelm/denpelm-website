@@ -5,8 +5,6 @@ import { formatDate } from "../../utils/dates";
 import { getStreamingServices } from "../../utils/releaseHelpers";
 import type { CollectionEntry } from "astro:content";
 
-const basePath = import.meta.env.BASE_URL;
-
 interface Props {
     release: CollectionEntry<"releases">;
 }
@@ -19,9 +17,9 @@ const services = getStreamingServices(data.streaming);
 
 <Card>
     <article class="release-card">
-        <a href={`${basePath}/releases/${release.id}`} class="cover-link">
+        <a href={`/releases/${release.id}`} class="cover-link">
             <img
-                src={`${basePath}${data.cover}`}
+                src={data.cover}
                 alt={data.title}
                 class="cover"
             />
@@ -44,16 +42,73 @@ const services = getStreamingServices(data.streaming);
                     </span>
                 ))}
             </div>
-            <p class="description">
-                {data.description}
-            </p>
-            <a href={`${basePath}/releases/${release.id}`} class="details-link">
+            <div class="description-wrapper">
+                <p class="description">
+                    {data.description}
+                </p>
+            </div>
+            <button
+                class="toggle-description"
+                type="button"
+                aria-expanded="false"
+            >
+                <span class="toggle-label">Read more</span>
+                <span class="toggle-icon" aria-hidden="true">↓</span>
+            </button>
+            <a href={`/releases/${release.id}`} class="details-link">
                 View release →
             </a>
             <StreamingLinks services={services} />
         </div>
     </article>
 </Card>
+
+<script>
+    const COLLAPSED_HEIGHT = 120; // Максимальная высота свёрнутого описания в px
+
+    document.querySelectorAll('.release-card').forEach(card => {
+        const wrapper = card.querySelector<HTMLElement>('.description-wrapper');
+        const button = card.querySelector<HTMLButtonElement>('.toggle-description');
+
+        if (!wrapper || !button) return;
+
+        // Проверяем, нужно ли показывать кнопку (если описание длиннее COLLAPSED_HEIGHT)
+        const needsTruncation = wrapper.scrollHeight > COLLAPSED_HEIGHT + 5;
+
+        if (!needsTruncation) {
+            // Если описание короткое — скрываем кнопку и не трогаем описание
+            button.style.display = 'none';
+            return;
+        }
+
+        // Устанавливаем начальное свёрнутое состояние
+        wrapper.style.maxHeight = `${COLLAPSED_HEIGHT}px`;
+        wrapper.classList.add('collapsed');
+
+        const label = button.querySelector('.toggle-label');
+        const icon = button.querySelector('.toggle-icon');
+
+        button.addEventListener('click', () => {
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+            if (isExpanded) {
+                // Сворачиваем
+                wrapper.style.maxHeight = `${COLLAPSED_HEIGHT}px`;
+                wrapper.classList.add('collapsed');
+                button.setAttribute('aria-expanded', 'false');
+                if (label) label.textContent = 'Read more';
+                if (icon) icon.textContent = '↓';
+            } else {
+                // Разворачиваем на реальную высоту содержимого
+                wrapper.style.maxHeight = `${wrapper.scrollHeight}px`;
+                wrapper.classList.remove('collapsed');
+                button.setAttribute('aria-expanded', 'true');
+                if (label) label.textContent = 'Read less';
+                if (icon) icon.textContent = '↑';
+            }
+        });
+    });
+</script>
 
 <style>
     .release-card {
@@ -113,10 +168,62 @@ const services = getStreamingServices(data.streaming);
         font-size: .8rem;
     }
     
+    /* 🎯 Обёртка для плавной анимации */
+    .description-wrapper {
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+    }
+    
+    .description-wrapper.collapsed {
+        position: relative;
+    }
+    
+    /* Градиент-затемнение в свёрнутом состоянии */
+    .description-wrapper.collapsed::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 40px;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(27, 27, 27, 0.95)
+        );
+        pointer-events: none;
+    }
+    
     .description {
         color: var(--color-muted);
         max-width: 60ch;
         white-space: pre-line;
+        margin: 0;
+    }
+    
+    /* 🎯 Кнопка сворачивания/разворачивания */
+    .toggle-description {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0;
+        background: none;
+        border: none;
+        color: var(--color-accent);
+        font: inherit;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        width: fit-content;
+        transition: opacity 0.2s;
+    }
+    
+    .toggle-description:hover {
+        opacity: 0.8;
+    }
+    
+    .toggle-icon {
+        transition: transform 0.3s ease;
     }
     
     .details-link {

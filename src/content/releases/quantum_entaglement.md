@@ -12,7 +12,7 @@ featured: false
 description: >
   "Throwbacks Vol.2" compilation.
 
-label: "Eessa"
+label: "Eessa Exclusive Records"
 
 streaming:
 

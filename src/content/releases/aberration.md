@@ -12,7 +12,7 @@ featured: false
 description: >
   An aberration can become the starting point of a new path.
 
-label: "Eessa"
+label: "Eessa Exclusive Records"
 
 streaming:
 

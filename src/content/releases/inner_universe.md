@@ -12,7 +12,7 @@ featured: true
 description: >
   Explore your Inner Universe.
 
-label: "Eessa"
+label: "Eessa Exclusive Records"
 
 streaming:
 

@@ -12,7 +12,7 @@ featured: false
 description: >
   Festive Colour Bass track.
 
-label: "Eessa"
+label: "Eessa Exclusive Records"
 
 streaming:
 
