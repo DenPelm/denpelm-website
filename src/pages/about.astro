@@ -162,8 +162,16 @@ const equipment = [
     }
 
     @media (max-width: 700px) {
-        .photos-grid {
+        .content-grid {
             grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+        }
+        
+        .about-photo {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            margin-bottom: var(--spacing-md);
         }
         
         .page-header h1 {
@@ -172,6 +180,29 @@ const equipment = [
         
         .bio-text {
             font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        .equipment-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .about-page {
+            padding: 0 0.5rem;
+        }
+        
+        .page-header h1 {
+            font-size: 1.75rem;
+        }
+        
+        .bio-text {
+            font-size: 0.95rem;
+        }
+        
+        .equipment-card {
+            padding: var(--spacing-sm);
         }
     }
 </style>

@@ -113,3 +113,33 @@ a {
     padding: var(--spacing-md);
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
+
+@media (max-width: 900px) {
+    .main-nav {
+        gap: 1.5rem;
+        padding: 1rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .main-nav::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .main-nav {
+        scrollbar-width: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-nav {
+        gap: 1rem;
+        padding: 0.75rem 1rem;
+    }
+    
+    .main-nav a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+        white-space: nowrap;
+    }
+}
