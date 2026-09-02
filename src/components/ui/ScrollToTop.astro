@@ -1,0 +1,101 @@
+<button
+    class="scroll-to-top hidden"
+    type="button"
+    aria-label="Scroll to top"
+    title="Back to top"
+>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+    >
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+    .scroll-to-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--color-surface);
+        border: 1px solid #444;
+        border-radius: 999px;
+        color: var(--color-text);
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease, border-color 0.2s ease;
+        z-index: 50;
+    }
+
+    .scroll-to-top.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .scroll-to-top:hover {
+        background: var(--color-accent);
+        color: var(--color-background);
+        border-color: var(--color-accent);
+    }
+
+    .scroll-to-top:focus-visible {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 3px;
+    }
+
+    @media (max-width: 700px) {
+        .scroll-to-top {
+            bottom: 1.25rem;
+            right: 1.25rem;
+            width: 44px;
+            height: 44px;
+        }
+    }
+</style>
+
+<script>
+    const button = document.querySelector<HTMLButtonElement>('.scroll-to-top');
+
+    if (button) {
+        const SHOW_THRESHOLD = 400;
+        let ticking = false;
+
+        const updateVisibility = () => {
+            if (window.scrollY > SHOW_THRESHOLD) {
+                button.classList.add('visible');
+            } else {
+                button.classList.remove('visible');
+            }
+            ticking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateVisibility);
+                ticking = true;
+            }
+        }, { passive: true });
+
+        button.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        updateVisibility();
+    }
+</script>

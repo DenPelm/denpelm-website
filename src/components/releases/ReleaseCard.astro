@@ -1,0 +1,141 @@
+---
+import Card from "../ui/Card.astro";
+import StreamingLinks from "./StreamingLinks.astro";
+import { formatDate } from "../../utils/dates";
+import { getStreamingServices } from "../../utils/releaseHelpers";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    release: CollectionEntry<"releases">;
+}
+
+const { release } = Astro.props;
+const data = release.data;
+const formattedDate = formatDate(data.date);
+const services = getStreamingServices(data.streaming);
+---
+
+<Card>
+    <article class="release-card">
+        <a href={`/releases/${release.id}`} class="cover-link">
+            <img
+                src={data.cover}
+                alt={data.title}
+                class="cover"
+            />
+        </a>
+        <div class="content">
+            <h2>{data.title}</h2>
+            <div class="meta">
+                <span>{formattedDate}</span>
+                {data.label && (
+                    <>
+                        <span>•</span>
+                        <span>{data.label}</span>
+                    </>
+                )}
+            </div>
+            <div class="genres">
+                {data.genres.map(genre => (
+                    <span class="genre">
+                        {genre}
+                    </span>
+                ))}
+            </div>
+            <p class="description">
+                {data.description}
+            </p>
+            <a href={`/releases/${release.id}`} class="details-link">
+                View release →
+            </a>
+            <StreamingLinks services={services} />
+        </div>
+    </article>
+</Card>
+
+<style>
+    .release-card {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 2rem;
+    }
+    
+    .cover-link {
+        display: block;
+        width: 100%;
+        height: fit-content;
+        align-self: start;
+        line-height: 0;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        border-radius: var(--radius);
+        overflow: hidden;
+    }
+    
+    .cover-link:hover {
+        opacity: 0.85;
+        transform: scale(1.02);
+    }
+    
+    .cover {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: var(--radius);
+        display: block;
+    }
+    
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+    
+    .meta {
+        display: flex;
+        gap: .5rem;
+        color: var(--color-muted);
+        font-size: .95rem;
+    }
+    
+    .genres {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem;
+    }
+    
+    .genre {
+        padding: .35rem .8rem;
+        border-radius: 999px;
+        background: rgba(255,255,255,.06);
+        color: var(--color-text);
+        font-size: .8rem;
+    }
+    
+    .description {
+        color: var(--color-muted);
+        max-width: 60ch;
+        white-space: pre-line;
+    }
+    
+    .details-link {
+        color: var(--color-accent);
+        font-weight: 500;
+        transition: opacity 0.2s;
+        width: fit-content;
+    }
+    
+    .details-link:hover {
+        opacity: 0.8;
+    }
+    
+    @media (max-width: 700px) {
+        .release-card {
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        .cover-link {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    }
+</style>

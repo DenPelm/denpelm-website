@@ -1,0 +1,175 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const bio1 = `DenPelm is a music producer who began his creative journey in 2019.
+
+His approach to music production centers on synthesizing electronic, cinematic, and organic elements, allowing him to capture diverse concepts, stories, and entire worlds within sound waves, seamlessly weaving together futuristic sound design and captivating melodies.`;
+
+const bio2 = `With a special focus on honing his production skills and exploring new sound design techniques, DenPelm continually expands his arsenal of tools to realize his creative vision. The inherent unattainability of perfection, however, only propels him forward as he asymptotically strives toward this ultimate ideal.
+
+DenPelm has released music on labels such as: Neoluminium: Star Recruits, Crossover For Charity, Mithril Records, Frostfyre, Future Bass Records, Seikatsu Records, TIME RAGE, Eessa Exclusive Records, YUTAKA DIGITAL, Spiralation, and CIRQUILITY.`;
+
+const equipment = [
+    { category: "DAW", items: ["FL Studio", "Synthesizer V Studio"] },
+    { category: "Hardware", items: ["Laptop: Lenovo LOQ 15IRX10", "CPU: Intel Core i7-14700HX", "GPU: Nvidia GeForce RTX 5050", "RAM: 32 GB", "Headphones: JBL 770 NC"] },
+    { category: "Synthesizers, Samplers, ROMplers (VST)", items: ["Xfer Serum", "Vital", "NI Razor", "IL Harmor", "kHs Phaseplant", "Audio Damage Quanta", "NI Kontakt 8", "Splice INSTRUMENT", "SWAM Instruments", "XLN Audio Addictive Keys", "Synapse Audio Dune 3", "AA Chromaphone 2"] },
+    { category: "Effects & Processing", items: ["FabFilter Bundle", "Valhalla DSP", "Spectral Suite", "KiloHearts Bundle", "Melda Production", "Polarity-SC", "Oeksound Soothe2", "Zynaptiq PITCHMAP, MORPH", "Xynth Audio Chroma", "NI Effects", "Cytomic The Glue", "Illformed Glitch2"] }
+];
+---
+
+<MainLayout title="About — DenPelm">
+    <section class="about-page">
+        <header class="page-header">
+            <h1>About</h1>
+        </header>
+
+        <div class="content-grid">
+            <p class="bio-text">
+                {bio1.split('\n\n').map(paragraph => (
+                    <span>
+                        {paragraph}
+                        <br /><br />
+                    </span>
+                ))}
+            </p>
+            <img 
+                src="/design/denpelm_4.jpg" 
+                alt="DenPelm #1" 
+                class="about-photo"
+            />
+        </div>
+
+        <div class="content-grid">
+            <img 
+                src="/design/denpelm_5.jpg" 
+                alt="DenPelm #2" 
+                class="about-photo"
+            />
+            <p class="bio-text">
+                {bio2.split('\n\n').map(paragraph => (
+                    <span>
+                        {paragraph}
+                        <br /><br />
+                    </span>
+                ))}
+            </p>
+        </div>
+
+        <div class="equipment-section">
+            <h2>Equipment & Tools</h2>
+            <div class="equipment-grid">
+                {equipment.map((gear) => (
+                    <div class="equipment-card">
+                        <h3>{gear.category}</h3>
+                        <ul>
+                            {gear.items.map((item) => (
+                                <li>{item}</li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+</MainLayout>
+
+<style>
+    .about-page {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        margin-bottom: var(--spacing-md);
+    }
+
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .bio-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--color-text);
+    }
+
+    .content-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .about-photo {
+        max-width: 400px;
+        object-fit: cover;
+        border-radius: var(--radius);
+        background: var(--color-surface);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .equipment-section {
+        margin-top: var(--spacing-lg);
+    }
+
+    .equipment-section h2 {
+        font-size: 1.75rem;
+        margin-bottom: var(--spacing-md);
+        text-align: center;
+    }
+
+    .equipment-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-md);
+    }
+
+    .equipment-card {
+        background: rgba(27, 27, 27, 0.95);
+        padding: var(--spacing-md);
+        border-radius: var(--radius);
+    }
+
+    .equipment-card h3 {
+        font-size: 1.1rem;
+        color: var(--color-accent);
+        margin-bottom: var(--spacing-sm);
+        border-bottom: 1px solid #333;
+        padding-bottom: 0.5rem;
+    }
+
+    .equipment-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .equipment-card li {
+        color: var(--color-muted);
+        font-size: 0.95rem;
+        padding: 0.25rem 0;
+        position: relative;
+        padding-left: 1.2rem;
+    }
+
+    .equipment-card li::before {
+        content: "•";
+        color: var(--color-accent);
+        position: absolute;
+        left: 0;
+    }
+
+    @media (max-width: 700px) {
+        .photos-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .page-header h1 {
+            font-size: 2rem;
+        }
+        
+        .bio-text {
+            font-size: 1rem;
+        }
+    }
+</style>

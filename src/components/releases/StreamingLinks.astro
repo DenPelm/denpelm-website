@@ -1,0 +1,73 @@
+---
+interface Service {
+    id: string;
+    name: string;
+    url?: string;
+}
+
+interface Props {
+    services: Service[];
+}
+
+const { services } = Astro.props;
+---
+
+{
+    services.length > 0 && (
+        <nav
+            class="streaming"
+            aria-label="Streaming platforms"
+        >
+            {
+                services.map((service) => (
+                    <a
+                        href={service.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={service.name}
+                    >
+                        {service.name}
+                    </a>
+                ))
+            }
+        </nav>
+    )
+}
+
+<style>
+
+.streaming {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: .75rem;
+
+    margin-top: auto;
+
+}
+
+.streaming a {
+
+    padding: .35rem .75rem;
+
+    border: 1px solid #444;
+
+    background-color: rgba(255,255,255,.06);
+
+    border-radius: 999px;
+
+    font-size: .9rem;
+
+    transition: .2s;
+
+}
+
+.streaming a:hover {
+
+    border-color: var(--color-accent);
+
+}
+
+</style>

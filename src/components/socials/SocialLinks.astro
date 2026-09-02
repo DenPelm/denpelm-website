@@ -1,0 +1,53 @@
+---
+interface SocialLink {
+    name: string;
+    url: string;
+}
+
+// Замените URL-адреса на реальные ссылки ваших профилей
+const links: SocialLink[] = [
+    { name: "Spotify", url: "https://open.spotify.com/artist/3KOw4AvgNJzsxl9BnE9clW" },
+    { name: "Apple Music", url: "https://music.apple.com/ru/artist/denpelm/1517216237" },
+    { name: "YouTube", url: "https://www.youtube.com/@DenPelm" },
+    { name: "Yandex Music", url: "https://music.yandex.ru/artist/8859436" },
+    { name: "SoundCloud", url: "https://soundcloud.com/denpelm" },
+    { name: "Newgrounds", url: "https://music.apple.com/ru/artist/denpelm/1517216237" },
+    { name: "VKontakte", url: "https://vk.com/denpelmmusic" },
+    { name: "Telegram", url: "https://t.me/denpelmmusic" }
+];
+---
+
+<nav class="social-links" aria-label="Social media">
+    {links.map((link) => (
+        <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+        >
+            {link.name}
+        </a>
+    ))}
+</nav>
+
+<style>
+    .social-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    
+    .social-link {
+        padding: 0.6rem 1.2rem;
+        border: 1px solid #444;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+        background: rgba(255,255,255,.06);
+    }
+    
+    .social-link:hover {
+        border-color: var(--color-accent);
+        background: rgba(255, 255, 255, 0.06);
+    }
+</style>

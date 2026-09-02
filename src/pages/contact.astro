@@ -1,0 +1,134 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import SocialLinks from "../components/socials/SocialLinks.astro";
+
+const email = "denpelm.inquiries@gmail.com";
+const discordName = "@denpelm";
+const discordUrl = "https://discord.gg/dWK24HNr";
+---
+
+<MainLayout title="Contact — DenPelm">
+    <section class="contact-page">
+        <header class="page-header">
+            <h1>Contact</h1>
+            <p class="intro">
+                Feel free to reach out for collaborations, licensing inquiries, or other matters.
+            </p>
+        </header>
+
+        <div class="contact-grid">
+            <div class="card contact-info">
+                <h2>Get in Touch</h2>
+                <ul class="contact-list">
+                    <li>
+                        <span class="label">Email</span>
+                        <a href={`mailto:${email}`} class="value">{email}</a>
+                    </li>
+                    <li>
+                        <span class="label">Discord</span>
+                        <a href={discordUrl} target="_blank" rel="noopener noreferrer" class="value">
+                            {discordName}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card socials-info">
+                <h2>Socials</h2>
+                <p class="socials-intro">
+                    Follow my latest releases and updates on these platforms:
+                </p>
+                <SocialLinks />
+            </div>
+        </div>
+    </section>
+</MainLayout>
+
+<style>
+    .contact-page {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        margin-bottom: var(--spacing-lg);
+        text-align: center;
+    }
+
+    .page-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .intro {
+        color: var(--color-muted);
+        font-size: 1.1rem;
+        max-width: 60ch;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .card {
+        background: var(--color-surface);
+        border-radius: var(--radius);
+        padding: var(--spacing-md);
+    }
+
+    .card h2 {
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .contact-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .contact-list li {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .label {
+        font-size: 0.85rem;
+        color: var(--color-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .value {
+        font-size: 1.1rem;
+        color: var(--color-text);
+        transition: color 0.2s;
+        word-break: break-all;
+    }
+
+    .value:hover {
+        color: var(--color-accent);
+    }
+
+    .socials-intro {
+        color: var(--color-muted);
+        margin-bottom: var(--spacing-sm);
+        font-size: 0.95rem;
+    }
+
+    @media (max-width: 700px) {
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .page-header h1 {
+            font-size: 2rem;
+        }
+    }
+</style>

@@ -1,0 +1,50 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import ReflectionCard from "../components/reflections/ReflectionCard.astro";
+import { getCollection } from "astro:content";
+
+const reflections = await getCollection("reflections");
+
+const sortedReflections = reflections.toSorted(
+    (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<MainLayout title="Reflections">
+    <h1>Reflections</h1>
+    <p class="section-intro">
+        DenPelm's personal thoughts and articles about his creative journey.
+    </p>
+    
+    <div class="reflections-grid">
+        {sortedReflections.map((reflection) => (
+            <ReflectionCard
+                reflection={reflection}
+            />
+        ))}
+    </div>
+</MainLayout>
+
+<style>
+    h1 {
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .section-intro {
+        color: var(--color-muted);
+        margin-bottom: var(--spacing-md);
+        font-size: 1.1rem;
+    }
+    
+    .reflections-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: var(--spacing-md);
+    }
+    
+    @media (max-width: 700px) {
+        .reflections-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

@@ -1,0 +1,53 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import ReleaseSection from "./ReleaseSection.astro";
+
+import { releaseCategories } from "../../data/releaseCategories";
+
+interface Props {
+    releases: CollectionEntry<"releases">[];
+}
+
+const { releases } = Astro.props;
+
+const sortedReleases = releases.toSorted(
+    (a, b) =>
+        b.data.date.getTime() -
+        a.data.date.getTime()
+);
+---
+
+{
+releaseCategories.map(releaseCategories => {
+
+    const filtered = sortedReleases.filter(
+
+        release =>
+
+        releaseCategories.releaseTypes.includes(
+
+            release.data.releaseType
+
+        )
+
+    );
+
+    if (filtered.length === 0)
+
+        return null;
+
+    return (
+
+        <ReleaseSection
+
+            title={releaseCategories.title}
+
+            releases={filtered}
+
+        />
+
+    );
+
+})
+}

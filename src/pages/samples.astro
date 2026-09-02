@@ -1,0 +1,191 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const gumroadUrl = "https://denpelm.gumroad.com/";
+---
+
+<MainLayout title="Samples & Presets — DenPelm">
+    <section class="samples-page">
+        <header class="page-header">
+            <h1>Samples & Presets</h1>
+            <p class="intro">
+                DenPelm's personal sound design work — sample packs, presets, and patches 
+                for various virtual synthesizers and plugins. 
+                Available for free or pay-what-you-want to support future development.
+            </p>
+        </header>
+
+        <div class="gumroad-card">
+            <div class="gumroad-content">
+                <div class="icon-wrapper">
+                    <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="48" 
+                        height="48" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        stroke-width="1.5" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                </div>
+                
+                <h2>Gumroad Store</h2>
+                <p class="description">
+                    All DenPelm's latest sample packs and synth presets
+                    are hosted on Gumroad. Visit the store to browse available materials, 
+                    read detailed descriptions, and download them directly.
+                </p>
+                
+                <a
+                    href={gumroadUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="gumroad-button"
+                >
+                    <span>Visit DenPelm on Gumroad</span>
+                    <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="18" 
+                        height="18" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>Usage Terms</h2>
+            <p>
+                All samples and presets available on DenPelm's Gumroad store are free to use 
+                in your personal and commercial music projects (including royalty-free 
+                usage in released tracks). Attribution is not required but always appreciated. 
+                Please do not resell or redistribute these files as your own sound packs.
+            </p>
+        </div>
+    </section>
+</MainLayout>
+
+<style>
+    .samples-page {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .page-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .intro {
+        color: var(--color-muted);
+        font-size: 1.1rem;
+        max-width: 60ch;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .gumroad-card {
+        background: rgba(27, 27, 27, 0.95);
+        border-radius: var(--radius);
+        padding: var(--spacing-lg) var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .gumroad-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-sm);
+    }
+
+    .icon-wrapper {
+        color: var(--color-accent);
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .gumroad-content h2 {
+        font-size: 1.75rem;
+    }
+
+    .description {
+        color: var(--color-muted);
+        max-width: 55ch;
+        line-height: 1.6;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .gumroad-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.75rem;
+        background: var(--color-accent);
+        color: var(--color-background);
+        border-radius: var(--radius);
+        font-weight: 600;
+        font-size: 1rem;
+        transition: opacity 0.2s, transform 0.2s;
+        margin-top: var(--spacing-xs);
+    }
+
+    .gumroad-button:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
+
+    .info-section {
+        background: rgba(27, 27, 27, 0.95);
+        border-radius: var(--radius);
+        padding: var(--spacing-md);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .info-section h2 {
+        font-size: 1.3rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .info-section p {
+        color: var(--color-muted);
+        line-height: 1.6;
+    }
+
+    @media (max-width: 700px) {
+        .page-header h1 {
+            font-size: 2rem;
+        }
+
+        .gumroad-card {
+            padding: var(--spacing-md) var(--spacing-sm);
+        }
+        
+        .gumroad-button {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>

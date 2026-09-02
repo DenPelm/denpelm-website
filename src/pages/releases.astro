@@ -1,0 +1,17 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+import ReleaseGrid from "../components/releases/ReleaseGrid.astro";
+
+import { getCollection } from "astro:content";
+
+const releases = await getCollection("releases");
+---
+
+<MainLayout title="Releases">
+
+<h1>Releases</h1>
+
+<ReleaseGrid releases={releases} />
+
+</MainLayout>

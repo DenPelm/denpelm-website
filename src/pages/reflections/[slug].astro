@@ -1,0 +1,166 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getCollection, render } from "astro:content";
+import { formatDate } from "../../utils/dates";
+
+export async function getStaticPaths() {
+    const reflections = await getCollection("reflections");
+    return reflections.map(reflection => ({
+        params: {
+            slug: reflection.id
+        },
+        props: {
+            reflection
+        }
+    }));
+}
+
+const { reflection } = Astro.props;
+const { Content } = await render(reflection);
+const data = reflection.data;
+const formattedDate = formatDate(data.date);
+---
+
+<MainLayout
+    title={`${data.title} — DenPelm`}
+    description={data.description}
+>
+    <a
+        href="/reflections"
+        class="back-link"
+    >
+        ← All reflections
+    </a>
+    
+    <article class="reflection-page">
+        <header class="reflection-header">
+            <img
+                src={data.cover}
+                alt={data.title}
+                class="cover"
+            />
+            <div class="header-content">
+                <h1>{data.title}</h1>
+                <time datetime={data.date.toISOString()}>
+                    {formattedDate}
+                </time>
+            </div>
+        </header>
+        
+        <div class="reflection-content">
+            <Content />
+        </div>
+    </article>
+</MainLayout>
+
+<style>
+    .reflection-page {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .reflection-header {
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .cover {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        border-radius: var(--radius);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+    
+    time {
+        color: var(--color-muted);
+        font-size: 1rem;
+    }
+    
+    .reflection-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+    
+    .reflection-content :global(h2) {
+        font-size: 1.75rem;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .reflection-content :global(h3) {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .reflection-content :global(p) {
+        margin-bottom: 1.25rem;
+        color: var(--color-text);
+    }
+    
+    .reflection-content :global(img) {
+        width: 100%;
+        max-width: 100%;
+        border-radius: var(--radius);
+        margin: 2rem 0;
+    }
+    
+    .reflection-content :global(em) {
+        display: block;
+        text-align: center;
+        color: var(--color-muted);
+        font-size: 0.95rem;
+        margin-top: -1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .reflection-content :global(ul),
+    .reflection-content :global(ol) {
+        margin-bottom: 1.25rem;
+        padding-left: 2rem;
+    }
+    
+    .reflection-content :global(li) {
+        margin-bottom: 0.5rem;
+    }
+    
+    .reflection-content :global(blockquote) {
+        border-left: 3px solid var(--color-accent);
+        padding-left: 1.5rem;
+        margin: 1.5rem 0;
+        color: var(--color-muted);
+        font-style: italic;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: var(--spacing-md);
+        color: var(--color-muted);
+        transition: color 0.2s;
+    }
+    
+    .back-link:hover {
+        color: var(--color-text);
+    }
+    
+    @media (max-width: 700px) {
+        h1 {
+            font-size: 2rem;
+        }
+        
+        .reflection-content {
+            font-size: 1rem;
+        }
+    }
+</style>
