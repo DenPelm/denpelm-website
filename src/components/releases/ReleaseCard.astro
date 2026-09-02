@@ -5,6 +5,8 @@ import { formatDate } from "../../utils/dates";
 import { getStreamingServices } from "../../utils/releaseHelpers";
 import type { CollectionEntry } from "astro:content";
 
+const basePath = import.meta.env.BASE_URL;
+
 interface Props {
     release: CollectionEntry<"releases">;
 }
@@ -17,9 +19,9 @@ const services = getStreamingServices(data.streaming);
 
 <Card>
     <article class="release-card">
-        <a href={`/releases/${release.id}`} class="cover-link">
+        <a href={`${basePath}/releases/${release.id}`} class="cover-link">
             <img
-                src={data.cover}
+                src={`${basePath}${data.cover}`}
                 alt={data.title}
                 class="cover"
             />
@@ -45,7 +47,7 @@ const services = getStreamingServices(data.streaming);
             <p class="description">
                 {data.description}
             </p>
-            <a href={`/releases/${release.id}`} class="details-link">
+            <a href={`${basePath}/releases/${release.id}`} class="details-link">
                 View release →
             </a>
             <StreamingLinks services={services} />

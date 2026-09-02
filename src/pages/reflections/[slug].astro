@@ -3,15 +3,13 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import { getCollection, render } from "astro:content";
 import { formatDate } from "../../utils/dates";
 
+const basePath = import.meta.env.BASE_URL;
+
 export async function getStaticPaths() {
     const reflections = await getCollection("reflections");
     return reflections.map(reflection => ({
-        params: {
-            slug: reflection.id
-        },
-        props: {
-            reflection
-        }
+        params: { slug: reflection.id },
+        props: { reflection }
     }));
 }
 
@@ -26,7 +24,7 @@ const formattedDate = formatDate(data.date);
     description={data.description}
 >
     <a
-        href="/reflections"
+        href={`${basePath}/reflections`}
         class="back-link"
     >
         ← All reflections
@@ -35,7 +33,7 @@ const formattedDate = formatDate(data.date);
     <article class="reflection-page">
         <header class="reflection-header">
             <img
-                src={data.cover}
+                src={`${basePath}${data.cover}`}
                 alt={data.title}
                 class="cover"
             />

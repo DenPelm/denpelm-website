@@ -3,6 +3,8 @@ import Card from "../ui/Card.astro";
 import { formatDate } from "../../utils/dates";
 import type { CollectionEntry } from "astro:content";
 
+const basePath = import.meta.env.BASE_URL;
+
 interface Props {
     reflection: CollectionEntry<"reflections">;
     className?: string;
@@ -16,9 +18,9 @@ const formattedDate = formatDate(data.date);
 <Card class={`reflection-card ${className}`}>
     <article>
         <div class="cover-container">
-            <a href={`/reflections/${reflection.id}`} class="cover-link">
+            <a href={`${basePath}/reflections/${reflection.id}`} class="cover-link">
                 <img
-                    src={data.cover}
+                    src={`${basePath}${data.cover}`}
                     alt={data.title}
                     class="cover"
                 />
@@ -30,7 +32,7 @@ const formattedDate = formatDate(data.date);
             <p class="description">
                 {data.description}
             </p>
-            <a href={`/reflections/${reflection.id}`} class="read-more">
+            <a href={`${basePath}/reflections/${reflection.id}`} class="read-more">
                 Read article →
             </a>
         </div>

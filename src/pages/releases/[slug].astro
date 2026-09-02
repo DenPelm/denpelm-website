@@ -2,38 +2,23 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import StreamingLinks from "../../components/releases/StreamingLinks.astro";
 import { getStreamingServices } from "../../utils/releaseHelpers";
-
 import { getCollection } from "astro:content";
-
 import { formatDate } from "../../utils/dates";
 
+const basePath = import.meta.env.BASE_URL;
+
 export async function getStaticPaths() {
-
-    const releases =
-        await getCollection("releases");
-
+    const releases = await getCollection("releases");
     return releases.map(release => ({
-
-        params: {
-            slug: release.id
-        },
-
-        props: {
-            release
-        }
-
+        params: { slug: release.id },
+        props: { release }
     }));
-
 }
 
 const { release } = Astro.props;
-
 const data = release.data;
-
 const services = getStreamingServices(data.streaming);
-
-const formattedDate =
-    formatDate(data.date);
+const formattedDate = formatDate(data.date);
 ---
 
 <MainLayout
@@ -42,7 +27,7 @@ const formattedDate =
 >
 
     <a
-        href="/releases"
+        href={`${basePath}/releases`}
         class="back-link"
     >
         ← All releases
@@ -53,7 +38,7 @@ const formattedDate =
         <div class="cover-container">
 
             <img
-                src={data.cover}
+                src={`${basePath}${data.cover}`}
                 alt={data.title}
                 class="cover"
             />
