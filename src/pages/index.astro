@@ -5,6 +5,8 @@ import ReflectionCard from "../components/reflections/ReflectionCard.astro";
 import SocialLinks from "../components/socials/SocialLinks.astro";
 import { getCollection } from "astro:content";
 
+const basePath = import.meta.env.BASE_URL;
+
 const releases = await getCollection("releases");
 const reflections = await getCollection("reflections");
 
@@ -37,7 +39,7 @@ const latestReflection = reflections
         </div>
         <div class="hero-image">
             <img
-                src="/design/denpelm_2.jpg"
+                src={`${basePath}/design/denpelm_2.jpg`}
                 alt="DenPelm"
                 class="artist-photo"
             />
