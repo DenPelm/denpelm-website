@@ -7,7 +7,7 @@ date: 2026-09-04
 
 cover: "/covers/hypnagogia.jpg"
 
-featured: true
+featured: false
 
 description: >
   Balancing on the edge between sleep and wakefulness, it is easy to forget what is reality.
