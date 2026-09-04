@@ -1,5 +1,5 @@
 ---
-title: "Hyphagogia"
+title: "Hypnagogia"
 
 releaseType: "single"
 
