@@ -1,5 +1,5 @@
 ---
-title: "modus, PAGMA, Mylky - willpower (DenPelm Remix)"
+title: "modus, PAGMA, Mylky - Willpower (DenPelm Remix)"
 
 releaseType: "remix"
 
